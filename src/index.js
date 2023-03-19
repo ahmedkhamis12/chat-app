@@ -1,7 +1,9 @@
+
 const path = require("path");
 const http = require("http");
 const express = require("express");
 const socketio = require("socket.io");
+
 const Filter = require("bad-words");
 const { generateMessage } = require("./utils/messages");
 const { addUser,removeUser, getUser,getUsersInRoom} = require("./utils/users")
@@ -29,6 +31,10 @@ app.use(express.static(publicDirectoryPath));
 
       socket.emit("message", generateMessage("Admin","Welcome!"));
       socket.broadcast.to(user.room).emit("message", generateMessage("Admin", `${user.username} has joined!`));
+      io.to(user.room).emit('roomData',{
+        room: user.room,
+        users: getUsersInRoom(user.room)
+      })
       callback();
     });
 
@@ -61,6 +67,10 @@ app.use(express.static(publicDirectoryPath));
     const user = removeUser(socket.id);
     if (user) {
       io.to(user.room).emit("message", generateMessage("Admin",`${user.username} has left!`));
+      io.to(user.room).emit('roomData',{
+        room: user.room,
+        users: getUsersInRoom(user.room)
+      })
     }
   });
 });

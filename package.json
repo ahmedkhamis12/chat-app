@@ -13,6 +13,8 @@
     "bad-words": "^3.0.4",
     "express": "^4.16.4",
     "moment": "^2.29.4",
+    "mongodb": "^3.7.3",
+    "mongoose": "^6.9.2",
     "socket.io": "^4.6.1"
   },
   "devDependencies": {
