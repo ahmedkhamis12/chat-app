@@ -9,9 +9,13 @@ const $messages = document.querySelector("#messages");
 //Templates
 const messageTemplate = document.querySelector("#message-template").innerHTML;
 
+//Options
+const {username, room} =Qs.parse(location.search, {ignoreQueryPrefix: true})
+
 socket.on("message", (message) => {
   console.log(message);
   const html = Mustache.render(messageTemplate, {
+    username: message.username,
     message: message.text,
     createdAt: message.createdAt
   });
@@ -39,3 +43,10 @@ $messageForm.addEventListener("submit", (e) => {
     console.log("The message was delivered!");
   });
 });
+
+socket.emit('join',{username, room},(error)=>{
+  if (error) {
+    alert(error);
+    location.href ='/'
+  }
+})

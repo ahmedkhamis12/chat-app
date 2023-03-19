@@ -1,8 +1,9 @@
 const moment = require('moment')
-const generateMessage = (text) => {
+const generateMessage = (username,text) => {
     return {
+        username,
         text,
-        createdAt: moment(text.createdAt).format('h:mm a'),
+        createdAt: moment(text.createdAt).format('h:mm a')
     };
 }
 
