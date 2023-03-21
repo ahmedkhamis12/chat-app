@@ -1,3 +1,4 @@
+
 const socket = io();
 
 //Elements
@@ -51,6 +52,18 @@ socket.on("message", (message) => {
   $messages.insertAdjacentHTML("beforeend", html);
   autoScroll();
 });
+
+socket.on('output-messages',(message)=>{
+  console.log(message)
+  const html = Mustache.render(messageTemplate, {
+    username: message.username,
+    message:message.msg,
+    createdAt: message.createdAt
+  });
+  $messages.insertAdjacentHTML("beforeend", html);
+  autoScroll();
+  
+})
 
 socket.on('roomData',({room, users})=>{
   const html = Mustache.render(sidebarTemplate,{
