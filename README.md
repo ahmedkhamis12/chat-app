@@ -1,7 +1,7 @@
 # chat-app
 # Real time chat application 
 
-By running a single command, you will get a chat app installed and fully configured on your machine. The app comes with many built-in features, such as chat rooms, user leaving, user connected, profanity not allowed.
+By running a single command, you will get a chat app installed and fully configured on your machine. The app comes with many built-in features, such as chat rooms, user leaving, user connected, profanity not allowed, Auto scroll.
 
 ## Quick Start
 
